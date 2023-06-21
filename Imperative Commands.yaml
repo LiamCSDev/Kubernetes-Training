@@ -1,0 +1,90 @@
+# Unsorted collection of useful imperative commands 
+
+# K8s cheat sheet
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#editing-resources
+
+#Check the user that is running a container 
+kubectl exec <pod> -- whoami 
+
+#Create a tain on a node 
+kubectl taint nodes <Node name> <key>=<vaule>:<effect>
+- Effects [NoSchedule, ?]
+
+#Remove taint from node 
+kubectl taint nodes <node name> <taint>- 
+
+#Create pod 
+kubectl run <pod name> --image=<image>
+
+#Adding a Label 
+kubectl label <resource> <resource nam> <label key>=<label value>
+
+#ReadinessProbes
+
+#LivenessProbes 
+
+#Labels, Selectors, Annotations 
+kubectl get pods --selector app=App1
+
+#Count lines returnede from command
+kubectl get pods --selector app=App1 | wc -l 
+
+#Count lines - the header to get the correct amount of resources matching the selector
+kubectl get pods --selector app=App1 --no-headers | wc -l
+
+#Get all resources matching a list of selectors
+kubectl get all --selector env=prod,app=App1
+
+#Get all resources across all namespaces
+kubectl get all -A
+
+#Rolling updates and rollbacks 
+
+#Updatee deployment image
+kubectl set image deployment/myapp-deployment nginx=ningx:1.9.1
+
+#Get deployment status 
+kubectl rollout status deployment/myapp-deployment
+
+#Get deployment history 
+kubectl rollout history deployment/myapp-deployment
+
+#Undo deployment
+kubectl rollout undo deployment/myapp-deployment
+
+#Rollback to a specific version
+kubectl rollout undo deploymnt nginx --to-revision=1
+
+#Jobs 
+apiVersion: batch/v1 
+kind: Job
+spec:
+  completitions: <amount of jobs to run>
+  parallelism: <amount of jobs run at the same time>
+
+#CronJobs 
+apiVersion: batch/v1beta1
+kind: CronJob
+spec:
+  schedule: <cron job>
+  jobTemplate:
+    <Job Spec> 
+
+#Create job imperative command 
+kubectl create job throw-dice-job --image=kodekloud/throw-dice --dry-run=client -o yaml > throw-dice-job.yaml
+
+#Services 
+
+#Ingress imperative
+kubectl create ingress <name> --rule="host/path=service:port"
+
+#Persistant Volumes
+kubectl get pvc
+
+kubectl get pv
+
+kubectl get pv,pvc
+
+# Config Map imperative
+kubectl create cm time-config -n dv11987 --from-literal=TIME_FREQ=10 -o yaml > cm.yaml
+
