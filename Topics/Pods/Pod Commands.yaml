@@ -1,0 +1,16 @@
+#Create a pod called 'hello-world' using the 'Busybox' image and label 'app: hello-world'
+kubectl run hello-world --image=busybox --labels="app=hello-world" 
+
+#Adding multiple labels 
+kubectl run hello-world-more-labels --image=busybox --labels="app=hello-world,tier=dev" 
+
+#Create a pod with no labels
+kubectl run no-labels --image=busybox
+
+#Add a label to a running pod 
+# kubectl label <object type> <object name> <label values>
+kubectl label pod no-labels type=test
+
+# Delete pod 
+# kubectl delete pod <pod name> 
+kubectl delete pod no-labels 
