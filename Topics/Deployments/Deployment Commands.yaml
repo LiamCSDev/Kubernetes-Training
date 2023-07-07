@@ -1,0 +1,32 @@
+# Get deployments 
+kubectl get deployments
+
+# Create a deployment called 'busybox-deploy' using the image 'busybox' with '2 replicas'
+kubectl create deployment busybox-deploy --image=busybox --replicas=2
+
+# Describe deployment
+kubectl describe deployment busybox-deploy
+
+# Rollout Restart 
+kubectl rollout restart deployment busybox-deploy 
+
+# Update image version
+kubectl set image deployment/busybox-deploy busybox=busybox:2.0
+
+#Get deployment status 
+kubectl rollout status deployment/busybox-deploy
+
+#Get deployment history 
+kubectl rollout history deployment/busybox-deploy
+
+#Undo deployment
+kubectl rollout undo deployment/busybox-deploy
+
+#Rollback to a specific version
+kubectl rollout undo deploymnt nginx --to-revision=1
+
+# Watch deployment until completion
+kubectl get deployment busybox-deploy -w
+
+# Watch all deployments until completion 
+kubectl get deployment -w

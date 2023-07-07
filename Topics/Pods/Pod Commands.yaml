@@ -14,3 +14,21 @@ kubectl label pod no-labels type=test
 # Delete pod 
 # kubectl delete pod <pod name> 
 kubectl delete pod no-labels 
+
+# Logs 
+kubectl logs <pod name> 
+
+# Logs, specific container 
+kubectl logs <pod name> -c <container>
+
+# Get Pods on all namespaces
+kubectl get po -A
+
+# Expose port 
+kubectl run nginx --image=nginx --port=80
+
+# Check image in pod using jsonpath
+kubectl get po nginx -o jsonpath='{.spec.containers[].image}{"\n"}'
+
+# Update pod image 
+kubectl set image pod/nginx nginx=nginx:1.7.1

@@ -1,0 +1,19 @@
+#Create job imperative command 
+kubectl create job throw-dice-job --image=kodekloud/throw-dice --dry-run=client -o yaml > throw-dice-job.yaml
+
+#Jobs 
+apiVersion: batch/v1 
+kind: Job
+spec:
+  completitions: <amount of jobs to run>
+  parallelism: <amount of jobs run at the same time>
+
+#CronJobs 
+apiVersion: batch/v1beta1
+kind: CronJob
+spec:
+  schedule: <cron job>
+  jobTemplate:
+    <Job Spec>
+
+#

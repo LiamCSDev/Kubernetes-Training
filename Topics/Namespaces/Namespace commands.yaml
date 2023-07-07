@@ -1,0 +1,11 @@
+# Create namespace 
+kubectl create namespace dev
+
+# Get namespaces
+kubectl get namespaces
+
+# Shortcut for namespaces 
+kubectl get ns 
+
+# Generate namespace yaml without creating namespace
+k create ns new-namespace -o yaml --dry-run=client  
